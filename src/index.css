@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -111,13 +114,53 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --font-roboto: "Roboto", sans-serif;
+  --font-tinos: "Tinos", serif;
+  --font-tiktok-sans: "TikTok Sans", sans-serif;
+  --color-green-light-1: #3a7c59;
+  --color-green-light-2: #4f9d77;
+  --color-green-dark-1: #2f6f4f;
+  --color-green-dark-2: #0f2f1f;
+  --color-green-dark-3: #1b4d36;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-tiktok-sans);
+  }
+}
+
+/* --- Gradients --- */
+.text-gradient {
+  background-image: linear-gradient(to right, rgb(34 211 238), rgb(59 130 246), rgb(40 160 247));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* --- Utility Tweaks --- */
+.text-gradient {
+  background-size: 200% 200%;
+  animation: gradient-flow 6s ease infinite;
+}
+
+@keyframes gradient-flow {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
   }
 }
