@@ -5,6 +5,7 @@ import { api } from "@/lib/api";
 import { useAuthStore } from "@/stores/authStore";
 import { Button } from "@/components/ui/button";
 import { NavBar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
 export function Dashboard() {
   const { user } = useAuthStore();
@@ -31,7 +32,7 @@ export function Dashboard() {
     <div className="min-h-screen">
       <NavBar />
 
-      <div className="container p-8 mx-auto max-w-6xl">
+      <div className="container p-8 mx-auto max-w-7xl">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold">Welcome back, {user?.name}!</h1>
@@ -48,24 +49,31 @@ export function Dashboard() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <div className="p-6 bg-white dark:bg-gray-950 rounded-lg border">
+          <div className="p-6 bg-white dark:bg-gray-900 rounded-lg border">
             <div className="flex items-center gap-3 mb-2">
-              <Coins className="w-5 h-5 text-blue-600" />
+              <Coins className="w-5 h-5 text-green-400" />
               <h3 className="font-semibold">Available Credits</h3>
             </div>
             <p className="text-3xl font-bold">
               {user?.credits.toLocaleString()}
             </p>
-            <Link to="/pricing">
-              <Button variant="outline" size="sm" className="mt-4">
-                Buy More Credits
-              </Button>
-            </Link>
+            <div className="space-x-2">
+              <Link to="/pricing">
+                <Button variant="default" size="sm" className="h-10 bg-green-light-1 hover:bg-green-light-2 text-white mt-4">
+                  Buy More Credits
+                </Button>
+              </Link>
+              <Link to="/pricing">
+                <Button variant="outline" size="sm" className="border shadow-gray-800 border-green-400 h-10 mt-4">
+                  Gift Credit
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          <div className="p-6 bg-white dark:bg-gray-950 rounded-lg border">
+          <div className="p-6 bg-white dark:bg-gray-900 rounded-lg border">
             <div className="flex items-center gap-3 mb-2">
-              <TrendingUp className="w-5 h-5 text-blue-600" />
+              <TrendingUp className="w-5 h-5 text-green-600" />
               <h3 className="font-semibold">Total Usage</h3>
             </div>
             <p className="text-3xl font-bold">
@@ -76,17 +84,17 @@ export function Dashboard() {
             </p>
           </div>
 
-          <div className="p-6 bg-white dark:bg-gray-950 rounded-lg border">
+          <div className="p-6 bg-white dark:bg-gray-900 rounded-lg border">
             <div className="flex items-center gap-3 mb-2">
-              <Sparkles className="w-5 h-5 text-blue-600" />
+              <Sparkles className="w-5 h-5 text-green-600" />
               <h3 className="font-semibold">Plan</h3>
             </div>
             <p className="text-3xl font-bold capitalize">
               {user?.subscriptionTier}
             </p>
             <Link to="/pricing">
-              <Button variant="outline" size="sm" className="mt-4">
-                Upgrade Plan
+              <Button variant="default" size="sm" className="h-10 mt-4">
+                Manage Plan
               </Button>
             </Link>
           </div>
@@ -134,6 +142,8 @@ export function Dashboard() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
