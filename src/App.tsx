@@ -1,20 +1,21 @@
-import { Routes, Route, Navigate } from 'react-router';
-import { useEffect } from 'react';
-import  secureLocalStorage  from  "react-secure-storage";
-import { useAuthStore } from './stores/authStore';
-import { Landing } from './pages/Landing';
-import { Pricing } from './pages/Pricing';
-import { BuddyExplorer } from './pages/BuddyExplorer';
-import { Login } from './pages/Login';
-import { Register } from './pages/Register';
-import { Dashboard } from './pages/user/Dashboard';
-import { Chat } from './pages/user/Chat';
+import { Routes, Route, Navigate } from "react-router";
+import { useEffect } from "react";
+import secureLocalStorage from "react-secure-storage";
+import { useAuthStore } from "./stores/authStore";
+import { Landing } from "./pages/Landing";
+import { Pricing } from "./pages/Pricing";
+import { BuddyExplorer } from "./pages/BuddyExplorer";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
+import { Dashboard } from "./pages/user/Dashboard";
+import { Chat } from "./pages/user/Chat";
+import { Support } from "./pages/Support";
 // import { db } from './lib/db';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuthStore();
-    // const { isLoading, user, error } = db.useAuth();
-    const token = secureLocalStorage.getItem('token');
+  // const { isLoading, user, error } = db.useAuth();
+  const token = secureLocalStorage.getItem("token");
   return isAuthenticated || token ? <>{children}</> : <Navigate to="/login" />;
 }
 
@@ -22,7 +23,7 @@ function App() {
   const { fetchUser } = useAuthStore();
 
   useEffect(() => {
-    const token = secureLocalStorage.getItem('token');
+    const token = secureLocalStorage.getItem("token");
     if (token) {
       fetchUser();
     }
@@ -35,6 +36,7 @@ function App() {
       <Route path="/buddies" element={<BuddyExplorer />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/support" element={<Support />} />
       <Route
         path="/dashboard"
         element={
