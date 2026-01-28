@@ -4,6 +4,7 @@ import { Sparkles } from "lucide-react";
 import { buddyApi } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { NavBar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
 export function BuddyExplorer() {
   const { data: buddies, isLoading } = useQuery({
@@ -15,7 +16,12 @@ export function BuddyExplorer() {
   });
 
   if (isLoading) {
-    return <div className="p-8 text-center">Loading buddies...</div>;
+    return (
+      <div className="min-h-screen">
+        <NavBar />
+        <div className="p-8 text-center">Loading buddies...</div>
+      </div>
+    );
   }
 
   const categories = [...new Set(buddies?.map((b) => b.category))];
@@ -23,7 +29,7 @@ export function BuddyExplorer() {
   return (
     <div className="min-h-screen">
       <NavBar />
-      <div className="container py-12 px-4 mx-auto max-w-6xl">
+      <div className="container py-12 px-4 mx-auto max-w-7xl">
         <h1 className="text-4xl font-bold mb-8">Explore AI Buddies</h1>
 
         {categories.map((category) => (
@@ -61,6 +67,7 @@ export function BuddyExplorer() {
           </div>
         ))}
       </div>
+      <Footer/>
     </div>
   );
 }
