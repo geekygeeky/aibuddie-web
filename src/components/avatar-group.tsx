@@ -4,6 +4,7 @@ const avatars = [
     "https://github.com/geekygeeky.png",
     "https://i.pravatar.cc/100?img=60",
     "https://github.com/devwraithe.png",
+    "https://github.com/lauriewired.png",
     "https://i.pravatar.cc/100?img=48",
     "https://i.pravatar.cc/100?img=10",
     "https://i.pravatar.cc/100?img=7",
@@ -13,8 +14,8 @@ const AvatarGroup = () => {
     return (
         <section className="flex flex-wrap items-center justify-center gap-4 mt-4 mb-8">
             {/* Avatar group */}
-            <div className="flex flex-col md:flex-row items-center md:items-center gap-3 ">
-                <div className="flex items-center -space-x-3">
+            <div className="flex flex-col md:flex-row items-center md:items-center gap-2">
+                <div className="flex items-center -space-x-4">
                     {avatars.map((src, i) => (
                         <img
                             key={i}
@@ -31,7 +32,7 @@ const AvatarGroup = () => {
 
                 <p className="text-sm md:text-base text-gray-900 dark:text-gray-100 font-semibold">
                     <span className="pr-1">More people supercharge their productivity on</span>
-                    <span className="text-green-light-2">AiBuddie</span>.
+                    <span className="text-green-500">AiBuddie.</span>
                 </p>
 
             </div>

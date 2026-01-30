@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { Check, Info } from "lucide-react";
-import { motion } from "framer-motion";
 import clsx from "clsx";
 
 import {
@@ -10,7 +9,6 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip";
-
 import { billingApi } from "@/lib/api";
 import { useAuthStore } from "@/stores/authStore";
 import { Button } from "@/components/ui/button";
@@ -21,9 +19,9 @@ const PLANS = [
   {
     name: "Starter",
     tier: "starter",
-    monthly: 15,
+    monthly: 29.99,
     yearly: 120,
-    credits: 5000,
+    credits: 8000,
     features: [
       "5,000 AI credits",
       "Access to all AI Buddies",
@@ -72,11 +70,11 @@ export function Pricing() {
   const navigate = useNavigate();
 
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
-  const [creditInput, setCreditInput] = useState<number>(300);
+  const [creditInput, setCreditInput] = useState<number>(250);
 
   const dollarValue = useMemo(() => {
-    // PAYG: 300 credits = $1 → (credits / 300) dollars
-    return Math.max(0, creditInput / 300);
+    // PAYG: 250 credits = $1 → (credits / 250) dollars
+    return Math.max(0, creditInput / 250);
   }, [creditInput]);
 
   const handlePurchase = async (tier: string) => {
@@ -98,7 +96,7 @@ export function Pricing() {
     <div className="flex flex-col">
       <NavBar />
       <TooltipProvider>
-        <div className="min-h-screen max-w-6xl mx-auto py-20 px-4">
+        <div className="min-h-screen max-w-6xl mx-auto pt-20 px-4">
           {/* Header */}
           <div className="text-center mb-14">
             <h1 className="text-4xl font-bold mb-3">
@@ -298,6 +296,35 @@ export function Pricing() {
           </div>
         </div>
       </TooltipProvider>
+      <div className="max-w-6xl mx-auto my-16 p-8 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h3 className="text-2xl font-bold mb-4">How Credits Work</h3>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div>
+            <h4 className="font-semibold mb-2">
+              Simple Tasks (2 - 100 credits)
+            </h4>
+            <p className="text-gray-600 dark:text-gray-400">
+              Quick questions, basic writing, simple queries, web surfing, content search
+            </p>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">
+              Medium Tasks (100 - 1,000 credits)
+            </h4>
+            <p className="text-gray-600 dark:text-gray-400">
+              Creative writing, code generation, content analysis, image generation
+            </p>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">
+              Complex Tasks (1000+ credits)
+            </h4>
+            <p className="text-gray-600 dark:text-gray-400">
+              Advanced reasoning, research, high quality image generation, video generation
+            </p>
+          </div>
+        </div>
+      </div>
       {/* <div className="min-h-screen max-w-6xl mx-auto py-20 px-4">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-4">
